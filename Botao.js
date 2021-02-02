@@ -6,7 +6,7 @@ export default function Botao(props){
 
         return (
         <View style={styles.view_father}>
-        <TouchableOpacity onPress={()=>props.logicaCalculadora()} style={styles.btn_TouchableOpacity} 
+        <TouchableOpacity onPress={()=>props.logicaCalculadora(props.numero)} style={styles.btn_TouchableOpacity} 
         ><Text style={styles.text_TouchableOpacity}>{props.numero}</Text>
         </TouchableOpacity>
         </View>

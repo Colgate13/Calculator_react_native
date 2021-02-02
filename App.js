@@ -19,8 +19,23 @@ export default function App() {
       numeros.push(i);
   }
 
-  function logicaCalculadora(){
+  function logicaCalculadora(n){
     //Lógica da calculadora.
+    if(sinal == "")
+    {
+      setFirstNumber(parseInt(firstNumber.toString() + n.toString()));
+      setStringCalculo(parseInt(firstNumber.toString() + n.toString()));
+    }
+    if((n == "/" || n == "*" || n == "+" || n == "-") && secondNumber == 0)
+    {
+      setStringCalculo(firstNumber.toString() + n);
+      setSinal(n);
+    }
+    if(sinal != "")
+    {
+      setSecondNumber(parseInt(secondNumber.toString() + n.toString()));
+      setStringCalculo(firstNumber + sinal + parseInt(secondNumber.toString() + n.toString()));
+    }
   }
  
   return (
@@ -29,17 +44,20 @@ export default function App() {
       <View style={styles.topo}><Text style={{fontSize:24,color:'white'}}>{stringCalculo}</Text></View>
       
       <View style={styles.view_TouchableOpacity}>
-        <TouchableOpacity style={styles.btnTouchaOpacity}>
+        <TouchableOpacity onPress={() => logicaCalculadora('+')}style={styles.btnTouchaOpacity}>
           <Text style={styles.text_view_TouchableOpacity}>+</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.btnTouchaOpacity}>
+        <TouchableOpacity  onPress={() => logicaCalculadora('-')} style={styles.btnTouchaOpacity}>
           <Text style={styles.text_view_TouchableOpacity}>-</Text>
           </TouchableOpacity>
-        <TouchableOpacity style={styles.btnTouchaOpacity}>
+        <TouchableOpacity  onPress={() => logicaCalculadora('/')} style={styles.btnTouchaOpacity}>
           <Text style={styles.text_view_TouchableOpacity}>/</Text>
           </TouchableOpacity>
-        <TouchableOpacity style={styles.btnTouchaOpacity}>
+        <TouchableOpacity  onPress={() => logicaCalculadora('*')} style={styles.btnTouchaOpacity}>
           <Text style={styles.text_view_TouchableOpacity}>*</Text>
           </TouchableOpacity>
+          <TouchableOpacity  onPress={() => logicaCalculadora('=')} style={styles.btnTouchaOpacity}>
+            <Text style={styles.text_view_TouchableOpacity}>=</Text>
+            </TouchableOpacity>
       </View>
       
       <View style={styles.view_botao}>
@@ -66,7 +84,7 @@ const styles = StyleSheet.create({
         alignItems:'center'
       },
       btnTouchaOpacity:
-      {width:'25%',
+      {width:'20%',
       backgroundColor:'rgb(20,20,20)',
       justifyContent:'center',
       alignItems:'center',
