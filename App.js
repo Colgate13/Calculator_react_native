@@ -36,6 +36,38 @@ export default function App() {
       setSecondNumber(parseInt(secondNumber.toString() + n.toString()));
       setStringCalculo(firstNumber + sinal + parseInt(secondNumber.toString() + n.toString()));
     }
+    if(n == "=")
+    {
+      let resultado = 0;
+      if(sinal == "+")
+      {
+        resultado = (firstNumber + secondNumber);
+      }
+     else if(sinal == "-")
+      {
+        resultado = (firstNumber - secondNumber);
+      }
+    else  if(sinal == "*")
+      {
+        resultado = (firstNumber * secondNumber);
+      }
+    else  if(sinal == "/")
+      {
+        resultado = (firstNumber / secondNumber);
+      }
+
+      setStringCalculo(resultado);
+      setSinal("");
+      setFirstNumber(resultado);
+      setSecondNumber(0)
+
+    }
+    if(n == 'clear'){
+      setStringCalculo("0");
+      setFirstNumber(0);
+      setSecondNumber(0);
+      setSinal("");
+    }
   }
  
   return (
@@ -57,6 +89,9 @@ export default function App() {
           </TouchableOpacity>
           <TouchableOpacity  onPress={() => logicaCalculadora('=')} style={styles.btnTouchaOpacity}>
             <Text style={styles.text_view_TouchableOpacity}>=</Text>
+            </TouchableOpacity>
+            <TouchableOpacity  onPress={() => logicaCalculadora('clear')} style={styles.btnTouchaOpacity}>
+            <Text style={styles.text_view_TouchableOpacity}>Cl</Text>
             </TouchableOpacity>
       </View>
       
@@ -84,19 +119,25 @@ const styles = StyleSheet.create({
         alignItems:'center'
       },
       btnTouchaOpacity:
-      {width:'20%',
+      {width:'17%',
       backgroundColor:'rgb(20,20,20)',
       justifyContent:'center',
       alignItems:'center',
-      height:'100%'
+      height:'100%',
+      borderRightColor:'black',
+      borderRightWidth:2,
+      height:'66.8%'
+      
     },
     text_view_TouchableOpacity:{
-      fontSize:24,color:'white'
+      fontSize:24,
+      color:'white',
     },
     view_botao:{
       flexDirection:'row',
       flexWrap:'wrap',
       borderTopColor:'black',
-      borderTopWidth:2,height:'66.8%'
+      borderTopWidth:2,
+      height:'66.8%'
     }
 });
